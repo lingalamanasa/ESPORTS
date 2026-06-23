@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog & News || Stackly ESports</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-header {
+      padding: 14rem 0 6rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .page-header-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+    .page-header-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.2); }
+    .page-header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(11,12,16,0.5), rgba(11,12,16,1)); z-index: 1; }
+    .page-header .container { position: relative; z-index: 2; }
+    .page-title { font-size: 3.5rem; margin-bottom: 1rem; animation: glow 3s ease infinite; }
+    .page-desc { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+    .featured-section { padding: 7rem 0; }
+    .featured-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0; overflow: hidden; padding: 0; }
+    .featured-img { overflow: hidden; }
+    .featured-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .featured-card:hover .featured-img img { transform: scale(1.05); }
+    .featured-content { padding: 4rem; display: flex; flex-direction: column; justify-content: center; }
+    .article-tag { display: inline-block; padding: 0.3rem 1rem; background: rgba(138,43,226,0.2); color: var(--secondary-color); border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 1rem; align-self: flex-start; letter-spacing: 1px; text-transform: uppercase; }
+    .featured-title { font-size: 2.2rem; margin-bottom: 1rem; line-height: 1.3; }
+    .featured-desc { color: var(--text-muted); margin-bottom: 2rem; font-size: 1.1rem; line-height: 1.8; }
+
+    .recent-news-section { padding: 7rem 0; background: var(--darker-bg); border-top: 1px solid var(--border-color); position: relative; overflow: hidden; }
+    .section-header { margin-bottom: 4rem; }
+    .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .news-card { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+    .news-card-img { width: 100%; height: 220px; overflow: hidden; }
+    .news-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .news-card:hover .news-card-img img { transform: scale(1.1); }
+    .news-card-content { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .news-meta { color: var(--text-muted); font-size: 0.85rem; margin-bottom: 1rem; display: flex; justify-content: space-between; }
+    .news-title { font-size: 1.3rem; margin-bottom: 1rem; line-height: 1.4; }
+    .news-title a { transition: var(--transition); }
+    .news-title a:hover { color: var(--secondary-color); }
+    .news-excerpt { color: var(--text-muted); margin-bottom: 1.5rem; flex-grow: 1; }
+
+    .newsletter-section { padding: 7rem 0; text-align: center; }
+    .newsletter-container { max-width: 800px; margin: 0 auto; padding: 4rem; text-align: center; }
+    .newsletter-container h2 { font-size: 2.5rem; margin-bottom: 1rem; }
+    .newsletter-container p { color: var(--text-muted); margin-bottom: 2rem; }
+    .newsletter-form { display: flex; gap: 1rem; justify-content: center; }
+    .newsletter-input { padding: 1rem 1.5rem; border-radius: 30px; border: 1px solid var(--border-color); background: rgba(0,0,0,0.5); color: #fff; width: 100%; max-width: 400px; outline: none; transition: var(--transition); font-family: inherit; }
+    .newsletter-input:focus { border-color: var(--secondary-color); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
+
+    @media (max-width: 768px) {
+      .featured-card { grid-template-columns: 1fr; }
+      .featured-content { padding: 2rem; }
+      .newsletter-form { flex-direction: column; }
+      .newsletter-input { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar glass" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand"><img src="assets/images/logo.webp" alt="Stackly Logo" class="logo-img"><span class="brand-text">Stackly</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><i class="bi bi-house-door"></i> Home</a></li>
+        <li><a href="about.html"><i class="bi bi-info-circle"></i> About</a></li>
+        <li><a href="services.html"><i class="bi bi-controller"></i> Services</a></li>
+        <li><a href="blog.html" class="active"><i class="bi bi-journal-text"></i> Blog</a></li>
+        <li><a href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+        <li><a href="login.html" class="btn-primary" style="padding: 0.5rem 1.2rem;"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <section class="page-header">
+    <div class="page-header-bg"><img src="assets/images/hero-bg.webp" alt="Arena"></div>
+    <div class="page-header-overlay"></div>
+    <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+    <div class="container fade-up">
+      <h1 class="page-title">Intelligence <span>Hub</span></h1>
+      <p class="page-desc">Stay updated with the latest news, meta analyses, and tournament recaps.</p>
+    </div>
+  </section>
+
+  <section class="featured-section">
+    <div class="container">
+      <div class="glass-card featured-card fade-up">
+        <div class="featured-img">
+          <img src="assets/images/tournament.webp" alt="Featured Article">
+        </div>
+        <div class="featured-content">
+          <span class="article-tag"><i class="bi bi-trophy"></i> Tournament Recap</span>
+          <h2 class="featured-title">How Stackly Secured the <span>Global Finals</span></h2>
+          <p class="featured-desc">An in-depth look at the strategic plays, crucial rounds, and the mindset that led our main roster to lift the championship trophy against all odds in the most watched esports event of the year.</p>
+          <a href="error.html" class="btn-secondary" style="align-self: flex-start;"><i class="bi bi-arrow-right"></i> Read Full Article</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="recent-news-section">
+    <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+    <div class="container">
+      <div class="section-header fade-up">
+        <div class="section-subtitle">Latest Articles</div>
+        <h2 class="section-title">Recent <span>Intel</span></h2>
+      </div>
+      <div class="news-grid stagger-children">
+        <div class="glass-card news-card fade-up">
+          <div class="news-card-img"><img src="assets/images/gaming-setup.webp" alt="News"></div>
+          <div class="news-card-content">
+            <div class="news-meta">
+              <span><i class="bi bi-calendar3"></i> Jun 15, 2026</span>
+              <span><i class="bi bi-person"></i> Alex "Vortex"</span>
+            </div>
+            <h3 class="news-title"><a href="error.html">New Training Facility Unveiled in LA</a></h3>
+            <p class="news-excerpt">Take a tour inside our brand new, state-of-the-art gaming house designed for peak performance and tactical synergy.</p>
+            <a href="error.html" class="btn-secondary" style="align-self: flex-start;">Read More</a>
+          </div>
+        </div>
+        <div class="glass-card news-card fade-up">
+          <div class="news-card-img"><img src="assets/images/coaching.webp" alt="News"></div>
+          <div class="news-card-content">
+            <div class="news-meta">
+              <span><i class="bi bi-calendar3"></i> Jun 10, 2026</span>
+              <span><i class="bi bi-person"></i> Coach Zen</span>
+            </div>
+            <h3 class="news-title"><a href="error.html">Patch 8.12 Meta Analysis</a></h3>
+            <p class="news-excerpt">A deep dive into the recent balance changes and how they affect the upcoming tournament circuit. Who are the big winners?</p>
+            <a href="error.html" class="btn-secondary" style="align-self: flex-start;">Read More</a>
+          </div>
+        </div>
+        <div class="glass-card news-card fade-up">
+          <div class="news-card-img"><img src="assets/images/player-portrait.webp" alt="News"></div>
+          <div class="news-card-content">
+            <div class="news-meta">
+              <span><i class="bi bi-calendar3"></i> Jun 05, 2026</span>
+              <span><i class="bi bi-person"></i> Media Team</span>
+            </div>
+            <h3 class="news-title"><a href="error.html">Stackly Partners with Secretlab</a></h3>
+            <p class="news-excerpt">We are thrilled to announce our new partnership to ensure our athletes game with maximum comfort and ergonomics.</p>
+            <a href="error.html" class="btn-secondary" style="align-self: flex-start;">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="newsletter-section">
+    <div class="container">
+      <div class="glass-card newsletter-container fade-up">
+        <div class="section-subtitle">Stay Connected</div>
+        <h2 class="section-title">Never Miss an <span>Update</span></h2>
+        <p>Get the latest esports news, meta updates, and tournament announcements delivered straight to your inbox.</p>
+        <form class="newsletter-form" action="error.html">
+          <input type="email" class="newsletter-input" placeholder="Enter your email address" required>
+          <button type="submit" class="btn-primary"><i class="bi bi-envelope-check"></i> Subscribe</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="navbar-brand" style="margin-bottom: 1.5rem; display: flex;"><img src="assets/images/logo.webp" alt="Stackly Logo" style="height:30px; margin-right: 10px;"><span class="brand-text" style="font-size: 1.2rem;">Stackly</span></a>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">The premier destination for elite esports intelligence.</p>
+          <div class="social-icons"><a href="error.html"><i class="bi bi-twitter-x"></i></a><a href="error.html"><i class="bi bi-discord"></i></a><a href="error.html"><i class="bi bi-twitch"></i></a><a href="error.html"><i class="bi bi-youtube"></i></a></div>
+        </div>
+        <div class="footer-col"><h4>Platform</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="error.html">Tournaments</a></li><li><a href="error.html">Leaderboards</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="blog.html">Blog & News</a></li><li><a href="error.html">Guides</a></li><li><a href="contact.html">Support</a></li><li><a href="error.html">FAQ</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="error.html">Terms of Service</a></li><li><a href="error.html">Privacy Policy</a></li><li><a href="error.html">Cookie Policy</a></li><li><a href="error.html">Compliance</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Stackly ESports. All Rights Reserved.</p></div>
+    </div>
+  </footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="bi bi-chevron-up"></i></button>
+  <script src="script.js"></script>
+</body>
+</html>

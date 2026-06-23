@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us || Stackly ESports</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-header {
+      padding: 14rem 0 6rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-header-bg {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0;
+    }
+    .page-header-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.2); }
+    .page-header-overlay {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(180deg, rgba(11,12,16,0.5), rgba(11,12,16,1));
+      z-index: 1;
+    }
+    .page-header .container { position: relative; z-index: 2; }
+    .page-title { font-size: 3.5rem; margin-bottom: 1rem; animation: glow 3s ease infinite; }
+    .page-desc { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+    .mission-section { padding: 7rem 0; }
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .mission-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    .mission-content p { color: var(--text-muted); font-size: 1.1rem; margin-bottom: 1.5rem; line-height: 1.8; }
+    .mission-img { position: relative; }
+    .mission-img img { width: 100%; border-radius: 16px; box-shadow: -20px 20px 0 var(--primary-color); transition: var(--transition); }
+    .mission-img:hover img { box-shadow: -25px 25px 0 var(--secondary-color); transform: scale(1.02); }
+
+    .timeline-section { padding: 7rem 0; background: var(--darker-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
+    .timeline-header { text-align: center; margin-bottom: 4rem; }
+    .timeline { position: relative; max-width: 800px; margin: 0 auto; padding: 2rem 0; }
+    .timeline::before { content: ''; position: absolute; top: 0; left: 50%; width: 2px; height: 100%; background: linear-gradient(180deg, var(--primary-color), var(--secondary-color)); transform: translateX(-50%); }
+    .timeline-item { margin-bottom: 3rem; position: relative; width: 50%; padding: 0 2.5rem; }
+    .timeline-item:nth-child(odd) { left: 0; text-align: right; }
+    .timeline-item:nth-child(even) { left: 50%; text-align: left; }
+    .timeline-dot { position: absolute; top: 5px; width: 18px; height: 18px; background: var(--secondary-color); border-radius: 50%; box-shadow: 0 0 15px var(--secondary-color), 0 0 30px rgba(0,240,255,0.3); animation: pulse 2s ease infinite; }
+    .timeline-item:nth-child(odd) .timeline-dot { right: -9px; }
+    .timeline-item:nth-child(even) .timeline-dot { left: -9px; }
+    .timeline-year { font-size: 1.5rem; color: var(--primary-light); font-family: 'Orbitron', sans-serif; margin-bottom: 0.5rem; font-weight: bold; }
+    .timeline-item h3 { margin-bottom: 0.5rem; font-size: 1.2rem; }
+    .timeline-item p { color: var(--text-muted); font-size: 0.95rem; }
+
+    .team-section { padding: 7rem 0; }
+    .team-header { text-align: center; margin-bottom: 4rem; }
+    .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+    .team-card { text-align: center; padding: 2.5rem 2rem; }
+    .team-avatar { width: 140px; height: 140px; border-radius: 50%; margin: 0 auto 1.5rem; overflow: hidden; border: 3px solid transparent; background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); padding: 3px; animation: borderGlow 3s ease infinite; }
+    .team-avatar-inner { width: 100%; height: 100%; border-radius: 50%; overflow: hidden; background: var(--darker-bg); }
+    .team-avatar-inner img { width: 100%; height: 100%; object-fit: cover; }
+    .team-card h3 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+    .team-role { color: var(--secondary-color); font-weight: 600; margin-bottom: 1rem; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; }
+    .team-card p { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem; }
+    .team-socials a { color: var(--text-muted); margin: 0 0.5rem; font-size: 1.2rem; transition: var(--transition); }
+    .team-socials a:hover { color: var(--primary-color); transform: translateY(-3px); display: inline-block; }
+
+    @media (max-width: 768px) {
+      .mission-grid { grid-template-columns: 1fr; }
+      .timeline::before { left: 20px; }
+      .timeline-item { width: 100%; left: 0 !important; padding-left: 50px; text-align: left !important; }
+      .timeline-dot { left: 11px !important; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar glass" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <img src="assets/images/logo.webp" alt="Stackly Logo" class="logo-img">
+        <span class="brand-text">Stackly</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><i class="bi bi-house-door"></i> Home</a></li>
+        <li><a href="about.html" class="active"><i class="bi bi-info-circle"></i> About</a></li>
+        <li><a href="services.html"><i class="bi bi-controller"></i> Services</a></li>
+        <li><a href="blog.html"><i class="bi bi-journal-text"></i> Blog</a></li>
+        <li><a href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+        <li><a href="login.html" class="btn-primary" style="padding: 0.5rem 1.2rem;"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <section class="page-header">
+    <div class="page-header-bg"><img src="assets/images/esports-crowd.webp" alt="Arena"></div>
+    <div class="page-header-overlay"></div>
+    <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+    <div class="container fade-up">
+      <h1 class="page-title">About <span>Stackly</span></h1>
+      <p class="page-desc">The leading force in competitive gaming, tournament organization, and esports intelligence.</p>
+    </div>
+  </section>
+
+  <section class="mission-section">
+    <div class="container mission-grid">
+      <div class="mission-content slide-left">
+        <div class="section-subtitle">Our Purpose</div>
+        <h2 class="section-title">Empowering the Next Generation of <span>Gamers</span></h2>
+        <p>At Stackly, we believe that esports is more than just gaming—it's a global culture of competition, dedication, and technological advancement. Our mission is to provide the ultimate platform for aspiring players and established professionals alike.</p>
+        <p>Through our cutting-edge intelligence systems, premium training facilities, and global tournament networks, we are actively shaping the future of digital competition.</p>
+        <a href="error.html" class="btn-primary"><i class="bi bi-arrow-right"></i> Know More</a>
+      </div>
+      <div class="mission-img slide-right">
+        <img src="assets/images/coaching.webp" alt="Stackly Mission">
+      </div>
+    </div>
+  </section>
+
+  <section class="timeline-section">
+    <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+    <div class="container">
+      <div class="timeline-header fade-up">
+        <div class="section-subtitle">Our History</div>
+        <h2 class="section-title">The Evolution of <span>Stackly</span></h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2023</div>
+          <h3>Foundation</h3>
+          <p>Stackly was born from a small gaming lounge, organizing local LAN tournaments with a vision for global scale.</p>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2024</div>
+          <h3>First Major Tournament</h3>
+          <p>Hosted the groundbreaking "Neon Series" attracting over 500 teams worldwide, establishing our global presence.</p>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2025</div>
+          <h3>Pro Roster Acquisition</h3>
+          <p>Signed our first tier-1 professional team in Valorant, marking our entry into top-tier competitive play.</p>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-dot"></div>
+          <div class="timeline-year">2026</div>
+          <h3>Global Hub Launch</h3>
+          <p>Opened our state-of-the-art LA training facility and launched the Stackly ESports Intelligence platform.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="team-section">
+    <div class="container">
+      <div class="team-header fade-up">
+        <div class="section-subtitle">The Masterminds</div>
+        <h2 class="section-title">Leadership <span>Team</span></h2>
+      </div>
+      <div class="team-grid stagger-children">
+        <div class="glass-card team-card fade-up">
+          <div class="team-avatar"><div class="team-avatar-inner"><img src="assets/images/player-portrait.webp" alt="CEO"></div></div>
+          <h3>Marcus "Apex" Kane</h3>
+          <div class="team-role">CEO & Founder</div>
+          <p>Former pro player turned esports visionary with a passion for building champions.</p>
+          <div class="team-socials">
+            <a href="error.html"><i class="bi bi-twitter-x"></i></a>
+            <a href="error.html"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="glass-card team-card fade-up">
+          <div class="team-avatar"><div class="team-avatar-inner"><img src="assets/images/player-portrait.webp" alt="COO"></div></div>
+          <h3>Diana Vance</h3>
+          <div class="team-role">Head of Operations</div>
+          <p>The logistical mastermind behind our global tournaments and partnerships.</p>
+          <div class="team-socials">
+            <a href="error.html"><i class="bi bi-twitter-x"></i></a>
+            <a href="error.html"><i class="bi bi-linkedin"></i></a>
+          </div>
+        </div>
+        <div class="glass-card team-card fade-up">
+          <div class="team-avatar"><div class="team-avatar-inner"><img src="assets/images/player-portrait.webp" alt="Coach"></div></div>
+          <h3>Liam "Zen" O'Connor</h3>
+          <div class="team-role">Head Coach</div>
+          <p>Tactical genius leading our pro rosters to victory with data-driven strategies.</p>
+          <div class="team-socials">
+            <a href="error.html"><i class="bi bi-twitter-x"></i></a>
+            <a href="error.html"><i class="bi bi-twitch"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="navbar-brand" style="margin-bottom: 1.5rem; display: flex;">
+            <img src="assets/images/logo.webp" alt="Stackly Logo" style="height:30px; margin-right: 10px;">
+            <span class="brand-text" style="font-size: 1.2rem;">Stackly</span>
+          </a>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">The premier destination for elite esports intelligence.</p>
+          <div class="social-icons">
+            <a href="error.html"><i class="bi bi-twitter-x"></i></a>
+            <a href="error.html"><i class="bi bi-discord"></i></a>
+            <a href="error.html"><i class="bi bi-twitch"></i></a>
+            <a href="error.html"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col"><h4>Platform</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="error.html">Tournaments</a></li><li><a href="error.html">Leaderboards</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="blog.html">Blog & News</a></li><li><a href="error.html">Guides</a></li><li><a href="contact.html">Support</a></li><li><a href="error.html">FAQ</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="error.html">Terms of Service</a></li><li><a href="error.html">Privacy Policy</a></li><li><a href="error.html">Cookie Policy</a></li><li><a href="error.html">Compliance</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Stackly ESports. All Rights Reserved.</p></div>
+    </div>
+  </footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="bi bi-chevron-up"></i></button>
+  <script src="script.js"></script>
+</body>
+</html>

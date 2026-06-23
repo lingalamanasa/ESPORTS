@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us || Stackly ESports</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .page-header {
+      padding: 14rem 0 6rem; text-align: center; position: relative; overflow: hidden;
+    }
+    .page-header-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; }
+    .page-header-bg img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.2); }
+    .page-header-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(180deg, rgba(11,12,16,0.5), rgba(11,12,16,1)); z-index: 1; }
+    .page-header .container { position: relative; z-index: 2; }
+    .page-title { font-size: 3.5rem; margin-bottom: 1rem; animation: glow 3s ease infinite; }
+    .page-desc { font-size: 1.2rem; color: var(--text-muted); max-width: 600px; margin: 0 auto; }
+
+    .contact-info-section { padding: 7rem 0; }
+    .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .info-card { text-align: center; padding: 3rem 2rem; }
+    .info-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+    .info-icon i { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .info-title { font-size: 1.4rem; margin-bottom: 1rem; }
+    .info-text { color: var(--text-muted); line-height: 1.8; }
+    .info-text a { color: var(--secondary-color); transition: var(--transition); }
+    .info-text a:hover { text-decoration: underline; text-shadow: 0 0 10px rgba(0,240,255,0.3); }
+
+    .contact-form-section { padding: 7rem 0; background: var(--darker-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); position: relative; overflow: hidden; }
+    .form-container { max-width: 800px; margin: 0 auto; padding: 3rem; }
+    .form-header { text-align: center; margin-bottom: 3rem; }
+    .contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+    .form-group.full-width { grid-column: 1 / -1; }
+    .form-control { width: 100%; padding: 1rem 1.5rem; background: rgba(0,0,0,0.5); border: 1px solid var(--border-color); border-radius: 8px; color: #fff; font-family: inherit; transition: var(--transition); outline: none; }
+    .form-control:focus { border-color: var(--secondary-color); box-shadow: 0 0 15px rgba(0,240,255,0.2); }
+    textarea.form-control { resize: vertical; min-height: 150px; }
+
+    .faq-section { padding: 7rem 0; }
+    .faq-header { text-align: center; margin-bottom: 4rem; }
+    .faq-grid { max-width: 800px; margin: 0 auto; }
+    .faq-item { margin-bottom: 1rem; }
+    .faq-question { width: 100%; text-align: left; padding: 1.2rem 1.5rem; background: var(--card-bg); border: 1px solid var(--border-color); color: var(--text-light); font-family: 'Outfit', sans-serif; font-size: 1rem; font-weight: 600; cursor: pointer; border-radius: 8px; transition: var(--transition); display: flex; align-items: center; justify-content: space-between; }
+    .faq-question:hover { border-color: var(--secondary-color); }
+    .faq-question i { transition: var(--transition); color: var(--secondary-color); }
+    .faq-question.active { border-color: var(--primary-color); background: rgba(138,43,226,0.1); border-radius: 8px 8px 0 0; }
+    .faq-question.active i { transform: rotate(180deg); }
+    .faq-answer { padding: 0 1.5rem; max-height: 0; overflow: hidden; background: var(--card-bg); border: 0 solid var(--border-color); border-radius: 0 0 8px 8px; transition: all 0.4s ease; }
+    .faq-answer.active { padding: 1.5rem; max-height: 300px; border-width: 0 1px 1px 1px; }
+    .faq-answer p { color: var(--text-muted); line-height: 1.8; }
+
+    @media (max-width: 768px) {
+      .contact-form { grid-template-columns: 1fr; }
+      .form-container { padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar glass" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand"><img src="assets/images/logo.webp" alt="Stackly Logo" class="logo-img"><span class="brand-text">Stackly</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html"><i class="bi bi-house-door"></i> Home</a></li>
+        <li><a href="about.html"><i class="bi bi-info-circle"></i> About</a></li>
+        <li><a href="services.html"><i class="bi bi-controller"></i> Services</a></li>
+        <li><a href="blog.html"><i class="bi bi-journal-text"></i> Blog</a></li>
+        <li><a href="contact.html" class="active"><i class="bi bi-envelope"></i> Contact</a></li>
+        <li><a href="login.html" class="btn-primary" style="padding: 0.5rem 1.2rem;"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle navigation"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <section class="page-header">
+    <div class="page-header-bg"><img src="assets/images/gaming-setup.webp" alt="Gaming Setup"></div>
+    <div class="page-header-overlay"></div>
+    <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+    <div class="container fade-up">
+      <h1 class="page-title">Establish <span>Comms</span></h1>
+      <p class="page-desc">Need assistance or looking to partner? Reach out to our command center.</p>
+    </div>
+  </section>
+
+  <section class="contact-info-section">
+    <div class="container">
+      <div class="info-grid stagger-children">
+        <div class="glass-card info-card fade-up">
+          <div class="info-icon"><i class="bi bi-geo-alt"></i></div>
+          <h3 class="info-title">Global HQ</h3>
+          <p class="info-text">1337 Cyber Blvd<br>Los Angeles, CA 90015<br>United States</p>
+        </div>
+        <div class="glass-card info-card fade-up">
+          <div class="info-icon"><i class="bi bi-envelope-at"></i></div>
+          <h3 class="info-title">Digital Comms</h3>
+          <p class="info-text">Support: <a href="mailto:support@stackly.gg">support@stackly.gg</a><br>Business: <a href="mailto:biz@stackly.gg">biz@stackly.gg</a></p>
+        </div>
+        <div class="glass-card info-card fade-up">
+          <div class="info-icon"><i class="bi bi-telephone"></i></div>
+          <h3 class="info-title">Direct Line</h3>
+          <p class="info-text">Toll-Free: +1 (800) 555-1337<br>Mon-Fri, 9AM-6PM PST</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact-form-section">
+    <div class="particles"><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div><div class="particle"></div></div>
+    <div class="container">
+      <div class="glass-card form-container fade-up">
+        <div class="form-header">
+          <div class="section-subtitle">Send a Message</div>
+          <h2 class="section-title">Transmit <span>Intel</span></h2>
+        </div>
+        <form class="contact-form" action="error.html">
+          <div class="form-group"><input type="text" class="form-control" placeholder="Your Name" required></div>
+          <div class="form-group"><input type="email" class="form-control" placeholder="Your Email" required></div>
+          <div class="form-group full-width"><input type="text" class="form-control" placeholder="Subject" required></div>
+          <div class="form-group full-width"><textarea class="form-control" placeholder="Your Message..." required></textarea></div>
+          <div class="form-group full-width" style="text-align: center; margin-top: 1rem;">
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center;"><i class="bi bi-send"></i> Send Transmission</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq-section">
+    <div class="container">
+      <div class="faq-header fade-up">
+        <div class="section-subtitle">Common Queries</div>
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+      </div>
+      <div class="faq-grid fade-up">
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">How do I register for a tournament? <i class="bi bi-chevron-down"></i></button>
+          <div class="faq-answer"><p>Simply create a free account on our platform, navigate to the Tournaments section, and click "Register Now" on any upcoming event. You can register as a solo player or with a full team.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">What games are supported on Stackly? <i class="bi bi-chevron-down"></i></button>
+          <div class="faq-answer"><p>We currently support Valorant, CS:GO 2, League of Legends, Apex Legends, Fortnite, and Overwatch 2. More games are being added regularly based on community demand.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">How does the coaching program work? <i class="bi bi-chevron-down"></i></button>
+          <div class="faq-answer"><p>Our coaching program offers personalized 1-on-1 sessions with former professional players. Sessions include VOD reviews, live gameplay analysis, and strategic planning tailored to your rank and goals.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" onclick="toggleFaq(this)">Is there a free plan available? <i class="bi bi-chevron-down"></i></button>
+          <div class="faq-answer"><p>Yes! Our free tier gives you access to community cups, basic profile features, and our Discord community. Upgrade to a paid tier for coaching, advanced analytics, and priority tournament access.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="navbar-brand" style="margin-bottom: 1.5rem; display: flex;"><img src="assets/images/logo.webp" alt="Stackly Logo" style="height:30px; margin-right: 10px;"><span class="brand-text" style="font-size: 1.2rem;">Stackly</span></a>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">The premier destination for elite esports intelligence.</p>
+          <div class="social-icons"><a href="error.html"><i class="bi bi-twitter-x"></i></a><a href="error.html"><i class="bi bi-discord"></i></a><a href="error.html"><i class="bi bi-twitch"></i></a><a href="error.html"><i class="bi bi-youtube"></i></a></div>
+        </div>
+        <div class="footer-col"><h4>Platform</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="error.html">Tournaments</a></li><li><a href="error.html">Leaderboards</a></li></ul></div>
+        <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="blog.html">Blog & News</a></li><li><a href="error.html">Guides</a></li><li><a href="contact.html">Support</a></li><li><a href="error.html">FAQ</a></li></ul></div>
+        <div class="footer-col"><h4>Legal</h4><ul class="footer-links"><li><a href="error.html">Terms of Service</a></li><li><a href="error.html">Privacy Policy</a></li><li><a href="error.html">Cookie Policy</a></li><li><a href="error.html">Compliance</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><p>&copy; 2026 Stackly ESports. All Rights Reserved.</p></div>
+    </div>
+  </footer>
+  <button class="back-to-top" aria-label="Back to top"><i class="bi bi-chevron-up"></i></button>
+  <script src="script.js"></script>
+  <script>
+    function toggleFaq(btn) {
+      const answer = btn.nextElementSibling;
+      const isActive = btn.classList.contains('active');
+      document.querySelectorAll('.faq-question').forEach(q => q.classList.remove('active'));
+      document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('active'));
+      if (!isActive) {
+        btn.classList.add('active');
+        answer.classList.add('active');
+      }
+    }
+  </script>
+</body>
+</html>

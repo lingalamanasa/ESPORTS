@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Stackly ESports - The premier platform for professional gaming, tournaments, and esports news.">
+  <title>Stackly || ESports Platform</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* ===== HERO ===== */
+    .hero-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 0;
+    }
+    .hero-bg img {
+      width: 100%; height: 100%; object-fit: cover;
+      filter: brightness(0.3);
+    }
+    .hero-overlay {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(11,12,16,0.92), rgba(138,43,226,0.15), rgba(11,12,16,0.95));
+      z-index: 1;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 1.2rem;
+      background: rgba(138, 43, 226, 0.2);
+      border: 1px solid var(--primary-color);
+      border-radius: 25px;
+      color: var(--secondary-color);
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      font-size: 0.9rem;
+      animation: pulse 2s ease infinite;
+    }
+    .hero-title {
+      font-size: 4.5rem;
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+    .hero-title span {
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .typed-wrapper {
+      display: inline-block;
+      min-width: 200px;
+    }
+    .typed-text {
+      border-right: 3px solid var(--secondary-color);
+      padding-right: 5px;
+      animation: glow 2s ease infinite;
+    }
+    .hero-text {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 550px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 1.2rem;
+      flex-wrap: wrap;
+    }
+    .hero-image {
+      position: relative;
+    }
+    .hero-image img {
+      width: 100%;
+      border-radius: 20px;
+      border: 2px solid var(--border-color);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+      animation: float 6s ease-in-out infinite;
+    }
+    .hero-image::before {
+      content: '';
+      position: absolute;
+      top: -10px; right: -10px;
+      width: 100%; height: 100%;
+      border: 2px solid var(--primary-color);
+      border-radius: 20px;
+      z-index: -1;
+      opacity: 0.3;
+    }
+
+    /* ===== STATS ===== */
+    .stats-section {
+      padding: 5rem 0;
+      background: var(--darker-bg);
+      border-bottom: 1px solid var(--border-color);
+      position: relative;
+      overflow: hidden;
+    }
+    .stats-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(138,43,226,0.08), transparent 70%);
+      transform: translate(-50%, -50%);
+    }
+    .stats-title { text-align: center; font-size: 2.5rem; margin-bottom: 3rem; position: relative; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .stat-card { text-align: center; padding: 2rem; position: relative; }
+    .stat-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .stat-icon i { background: linear-gradient(135deg, var(--primary-color), var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-number { font-size: 3rem; font-weight: 900; font-family: 'Orbitron', sans-serif; background: linear-gradient(135deg, #fff, var(--secondary-color)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .stat-label { font-size: 1rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-top: 0.5rem; }
+
+    /* ===== ABOUT ===== */
+    .about-section { padding: 7rem 0; position: relative; overflow: hidden; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+    .about-img { position: relative; }
+    .about-img img {
+      width: 100%;
+      border-radius: 16px;
+      border: 2px solid var(--primary-color);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+      transition: var(--transition);
+    }
+    .about-img:hover img {
+      box-shadow: 0 25px 50px rgba(138,43,226,0.3);
+      transform: scale(1.02);
+    }
+    .about-img .floating-badge {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      color: #fff;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      box-shadow: var(--glow-purple);
+      animation: float 4s ease-in-out infinite;
+    }
+    .about-text p { color: var(--text-muted); margin-bottom: 1.5rem; font-size: 1.1rem; }
+    .features-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 2rem; }
+    .features-list li { display: flex; align-items: center; gap: 0.8rem; font-weight: 600; transition: var(--transition); }
+    .features-list li:hover { transform: translateX(5px); color: var(--secondary-color); }
+    .features-list i { color: var(--secondary-color); font-size: 1.1rem; }
+
+    /* ===== TOURNAMENTS ===== */
+    .tournaments-section { padding: 7rem 0; background: var(--darker-bg); position: relative; overflow: hidden; }
+    .tournaments-header { text-align: center; margin-bottom: 3rem; }
+    .tab-buttons { display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap; }
+    .tab-btn { background: transparent; color: var(--text-light); border: 1px solid var(--border-color); padding: 0.8rem 2rem; border-radius: 30px; font-family: 'Orbitron', sans-serif; cursor: pointer; transition: var(--transition); font-size: 0.85rem; }
+    .tab-btn.active, .tab-btn:hover { background: linear-gradient(135deg, var(--primary-color), #6e1db5); border-color: var(--primary-color); box-shadow: var(--glow-purple); }
+    .tab-pane { display: none; }
+    .tab-pane.active { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; animation: fadeUp 0.6s ease forwards; }
+    .tournament-card { text-align: center; padding: 2.5rem 2rem; }
+    .tournament-card .card-img { width: 100%; height: 180px; border-radius: 12px; overflow: hidden; margin-bottom: 1.5rem; }
+    .tournament-card .card-img img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+    .tournament-card:hover .card-img img { transform: scale(1.1); }
+    .tournament-card h3 { color: var(--secondary-color); margin-bottom: 0.8rem; font-size: 1.4rem; }
+    .tournament-card p { color: var(--text-muted); margin-bottom: 1.2rem; }
+    .prize { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, var(--accent-gold), #ff9800); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem; display: block; font-family: 'Orbitron', sans-serif; }
+
+    /* ===== PLAYERS ===== */
+    .players-section { padding: 7rem 0; position: relative; }
+    .players-header { text-align: center; margin-bottom: 4rem; }
+    .players-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+    .player-card { text-align: center; overflow: hidden; padding: 2.5rem 2rem; }
+    .player-card .avatar {
+      width: 130px; height: 130px;
+      border-radius: 50%;
+      border: 3px solid transparent;
+      margin: 0 auto 1.5rem;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+      padding: 3px;
+      animation: borderGlow 3s ease infinite;
+    }
+    .player-card .avatar-inner {
+      width: 100%; height: 100%;
+      border-radius: 50%;
+      background: var(--darker-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+      overflow: hidden;
+    }
+    .player-card .avatar-inner img { width: 100%; height: 100%; object-fit: cover; }
+    .player-card h3 { font-size: 1.3rem; margin-bottom: 0.5rem; }
+    .player-card .role { color: var(--primary-light); font-weight: 600; text-transform: uppercase; font-size: 0.85rem; letter-spacing: 2px; }
+
+    /* ===== GAMES WE COVER ===== */
+    .games-section { padding: 5rem 0; background: var(--darker-bg); border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); }
+    .games-grid { display: flex; justify-content: space-around; align-items: center; flex-wrap: wrap; gap: 2rem; }
+    .game-item { text-align: center; transition: var(--transition); cursor: pointer; }
+    .game-item:hover { transform: translateY(-10px); }
+    .game-icon { width: 80px; height: 80px; border-radius: 16px; background: var(--card-bg); border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 0.8rem; transition: var(--transition); }
+    .game-item:hover .game-icon { border-color: var(--secondary-color); box-shadow: var(--glow-cyan); background: rgba(0, 240, 255, 0.1); }
+    .game-name { font-size: 0.85rem; color: var(--text-muted); font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+
+    /* ===== NEWS ===== */
+    .news-section { padding: 7rem 0; }
+    .news-header { display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem; }
+    .news-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+    .news-card { padding: 0; overflow: hidden; }
+    .news-card-img { width: 100%; height: 220px; overflow: hidden; }
+    .news-card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .news-card:hover .news-card-img img { transform: scale(1.1); }
+    .news-card-content { padding: 1.5rem 2rem 2rem; }
+    .news-date { color: var(--primary-light); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.8rem; display: block; letter-spacing: 1px; }
+    .news-title { font-size: 1.2rem; margin-bottom: 0.8rem; line-height: 1.4; }
+    .news-title a { transition: var(--transition); }
+    .news-title a:hover { color: var(--secondary-color); }
+    .news-excerpt { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* ===== CTA ===== */
+    .cta-section {
+      padding: 7rem 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: linear-gradient(135deg, rgba(138,43,226,0.12), rgba(0,240,255,0.08));
+      z-index: 0;
+    }
+    .cta-section .container { position: relative; z-index: 1; }
+    .cta-section h2 { font-size: 3rem; margin-bottom: 1.5rem; animation: glow 3s ease infinite; }
+    .cta-section p { color: var(--text-muted); font-size: 1.2rem; max-width: 600px; margin: 0 auto 2.5rem; }
+
+    @media (max-width: 768px) {
+      .hero-title { font-size: 2.5rem; }
+      .hero-grid { grid-template-columns: 1fr; text-align: center; }
+      .hero-text { margin: 0 auto 2rem; }
+      .hero-buttons { justify-content: center; }
+      .hero-image { margin-top: 2rem; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-img .floating-badge { right: 10px; bottom: -15px; }
+      .news-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <!-- SPLASH SCREEN -->
+  <div class="splash-screen" id="splashScreen">
+    <div class="splash-particles">
+      <div class="splash-particle"></div><div class="splash-particle"></div><div class="splash-particle"></div>
+      <div class="splash-particle"></div><div class="splash-particle"></div><div class="splash-particle"></div>
+    </div>
+    <div class="splash-logo">
+      <img src="assets/images/logo.webp" alt="Stackly Logo">
+    </div>
+    <div class="splash-brand">Stackly</div>
+    <div class="splash-tagline">Initializing Mainframe</div>
+    <div class="splash-loader">
+      <div class="splash-loader-bar"></div>
+    </div>
+  </div>  <!-- NAVBAR -->
+  <nav class="navbar glass" id="navbar">
+    <div class="container">
+      <a href="index.html" class="navbar-brand">
+        <img src="assets/images/logo.webp" alt="Stackly Logo" class="logo-img">
+        <span class="brand-text">Stackly</span>
+      </a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="index.html" class="active"><i class="bi bi-house-door"></i> Home</a></li>
+        <li><a href="about.html"><i class="bi bi-info-circle"></i> About</a></li>
+        <li><a href="services.html"><i class="bi bi-controller"></i> Services</a></li>
+        <li><a href="blog.html"><i class="bi bi-journal-text"></i> Blog</a></li>
+        <li><a href="contact.html"><i class="bi bi-envelope"></i> Contact</a></li>
+        <li><a href="login.html" class="btn-secondary" style="padding: 0.5rem 1.2rem;"><i class="bi bi-box-arrow-in-right"></i> Login</a></li>
+        <li><a href="register.html" class="btn-primary" style="padding: 0.5rem 1.2rem;"><i class="bi bi-person-plus"></i> Register</a></li>
+      </ul>
+      <button class="hamburger" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="nav-overlay" id="navOverlay"></div>
+
+  <!-- SECTION 1: HERO -->
+  <section class="hero-section" id="hero">
+    <div class="hero-bg">
+      <img src="assets/images/esports-crowd.webp" alt="ESports Arena">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="particles">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div>
+    </div>
+    <div class="container">
+      <div class="hero-grid">
+        <div class="hero-content fade-up">
+          <div class="hero-badge">
+            <i class="bi bi-lightning-charge-fill"></i> Next-Gen ESports Experience
+          </div>
+          <h1 class="hero-title">
+            Dominate The<br><span class="typed-wrapper"><span class="typed-text" data-words='["Digital Arena","Global Stage","Competition","Battlefield"]'></span></span>
+          </h1>
+          <p class="hero-text">
+            Join the ultimate platform for competitive gaming. From daily tournaments with massive prize pools to global leaderboards, we bring the world's best players together under one roof.
+          </p>
+          <div class="hero-buttons">
+            <a href="error.html" class="btn-primary">
+              <i class="bi bi-controller"></i> Join Tournament
+            </a>
+            <a href="error.html" class="btn-secondary">
+              <i class="bi bi-play-circle"></i> Watch Live
+            </a>
+          </div>
+        </div>
+        <div class="hero-image slide-right">
+          <img src="assets/images/tournament.webp" alt="Tournament Victory">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 2: STATS -->
+  <section class="stats-section" id="stats">
+    <div class="container">
+      <h2 class="stats-title fade-up">Global <span>Impact</span></h2>
+      <div class="stats-grid stagger-children">
+        <div class="glass-card stat-card fade-up">
+          <div class="stat-icon"><i class="bi bi-people-fill"></i></div>
+          <div class="stat-number counter" data-target="25000" data-suffix="+">0</div>
+          <div class="stat-label">Active Players</div>
+        </div>
+        <div class="glass-card stat-card fade-up">
+          <div class="stat-icon"><i class="bi bi-trophy-fill"></i></div>
+          <div class="stat-number counter" data-target="500" data-suffix="+">0</div>
+          <div class="stat-label">Tournaments Hosted</div>
+        </div>
+        <div class="glass-card stat-card fade-up">
+          <div class="stat-icon"><i class="bi bi-cash-coin"></i></div>
+          <div class="stat-number counter" data-target="5" data-suffix="M+">0</div>
+          <div class="stat-label">Prize Pool Awarded</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 3: ABOUT US -->
+  <section class="about-section" id="about">
+    <div class="container about-grid">
+      <div class="about-img slide-left">
+        <img src="assets/images/about-img.webp" alt="ESports Team Setup">
+        <div class="floating-badge">Since 2023</div>
+      </div>
+      <div class="about-text slide-right">
+        <div class="section-subtitle">About Stackly ESports</div>
+        <h2 class="section-title">Forging the <span>Champions</span> of Tomorrow</h2>
+        <p>We provide state-of-the-art facilities, advanced coaching powered by AI, and elite tournament management to elevate your gaming career to the next level.</p>
+        <p>Whether you are a solo prodigy or a full squad, Stackly is your home for competitive success and global recognition.</p>
+        <ul class="features-list">
+          <li><i class="bi bi-check2-circle"></i> Professional Coaching</li>
+          <li><i class="bi bi-check2-circle"></i> Global Tournaments</li>
+          <li><i class="bi bi-check2-circle"></i> Elite Sponsorships</li>
+          <li><i class="bi bi-check2-circle"></i> High-End Gear</li>
+          <li><i class="bi bi-check2-circle"></i> AI-Powered Analytics</li>
+          <li><i class="bi bi-check2-circle"></i> 24/7 Support</li>
+        </ul>
+        <a href="about.html" class="btn-primary"><i class="bi bi-arrow-right"></i> Discover Our Story</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4: TOURNAMENTS (TABS) -->
+  <section class="tournaments-section" id="tournaments">
+    <div class="particles">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div>
+    </div>
+    <div class="container">
+      <div class="tournaments-header fade-up">
+        <div class="section-subtitle">Compete & Conquer</div>
+        <h2 class="section-title">Featured <span>Tournaments</span></h2>
+      </div>
+      <div class="tab-buttons fade-up">
+        <button class="tab-btn active" data-tab="upcoming" onclick="switchTab('upcoming')"><i class="bi bi-calendar-event"></i> Upcoming</button>
+        <button class="tab-btn" data-tab="ongoing" onclick="switchTab('ongoing')"><i class="bi bi-broadcast"></i> Ongoing</button>
+        <button class="tab-btn" data-tab="past" onclick="switchTab('past')"><i class="bi bi-clock-history"></i> Past Results</button>
+      </div>
+      <div class="tab-content fade-up">
+        <div class="tab-pane active" id="upcoming">
+          <div class="glass-card tournament-card">
+            <div class="card-img"><img src="assets/images/esports-crowd.webp" alt="Cyber Cup"></div>
+            <h3>Cyber Cup 2026</h3>
+            <p>Valorant 5v5 Championship</p>
+            <span class="prize">$50,000 Pool</span>
+            <a href="error.html" class="btn-secondary">Register Now</a>
+          </div>
+          <div class="glass-card tournament-card">
+            <div class="card-img"><img src="assets/images/gaming-setup.webp" alt="Neon Masters"></div>
+            <h3>Neon Masters</h3>
+            <p>CS:GO 2 Invitational</p>
+            <span class="prize">$100,000 Pool</span>
+            <a href="error.html" class="btn-secondary">Register Now</a>
+          </div>
+          <div class="glass-card tournament-card">
+            <div class="card-img"><img src="assets/images/tournament.webp" alt="Stackly Series"></div>
+            <h3>Stackly Series</h3>
+            <p>League of Legends</p>
+            <span class="prize">$75,000 Pool</span>
+            <a href="error.html" class="btn-secondary">Register Now</a>
+          </div>
+        </div>
+        <div class="tab-pane" id="ongoing">
+          <div class="glass-card tournament-card">
+            <div class="card-img"><img src="assets/images/hero-bg.webp" alt="Weekly Rumble"></div>
+            <h3>Weekly Rumble</h3>
+            <p>Apex Legends Trios</p>
+            <span class="prize" style="-webkit-text-fill-color: #00ff88;">⚡ Live Now</span>
+            <a href="error.html" class="btn-primary">Watch Stream</a>
+          </div>
+          <div class="glass-card tournament-card">
+            <div class="card-img"><img src="assets/images/coaching.webp" alt="Duo Showdown"></div>
+            <h3>Duo Showdown</h3>
+            <p>Fortnite Duos</p>
+            <span class="prize" style="-webkit-text-fill-color: #00ff88;">⚡ Live Now</span>
+            <a href="error.html" class="btn-primary">Watch Stream</a>
+          </div>
+        </div>
+        <div class="tab-pane" id="past">
+          <div class="glass-card tournament-card">
+            <div class="card-img"><img src="assets/images/tournament.webp" alt="Winter Brawl"></div>
+            <h3>Winter Brawl 2025</h3>
+            <p>Winner: Team Stackly</p>
+            <span class="prize">View Brackets</span>
+            <a href="error.html" class="btn-secondary">Read More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5: PLAYERS -->
+  <section class="players-section" id="players">
+    <div class="container">
+      <div class="players-header fade-up">
+        <div class="section-subtitle">Elite Roster</div>
+        <h2 class="section-title">Top Stackly <span>Athletes</span></h2>
+      </div>
+      <div class="players-grid stagger-children">
+        <div class="glass-card player-card fade-up">
+          <div class="avatar"><div class="avatar-inner"><img src="assets/images/player-portrait.webp" alt="Alex Vortex"></div></div>
+          <h3>Alex "Vortex" Chen</h3>
+          <div class="role">Team Captain / IGL</div>
+        </div>
+        <div class="glass-card player-card fade-up">
+          <div class="avatar"><div class="avatar-inner"><img src="assets/images/player-portrait.webp" alt="Sarah Nova"></div></div>
+          <h3>Sarah "Nova" Jenkins</h3>
+          <div class="role">Entry Fragger</div>
+        </div>
+        <div class="glass-card player-card fade-up">
+          <div class="avatar"><div class="avatar-inner"><img src="assets/images/player-portrait.webp" alt="Mike Phantom"></div></div>
+          <h3>Mike "Phantom" Ross</h3>
+          <div class="role">Support / Flex</div>
+        </div>
+        <div class="glass-card player-card fade-up">
+          <div class="avatar"><div class="avatar-inner"><img src="assets/images/player-portrait.webp" alt="Elena Viper"></div></div>
+          <h3>Elena "Viper" Cruz</h3>
+          <div class="role">Sniper / Operator</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6: GAMES WE COVER -->
+  <section class="games-section" id="games">
+    <div class="container">
+      <div style="text-align: center; margin-bottom: 3rem;" class="fade-up">
+        <div class="section-subtitle">Ecosystem</div>
+        <h2 class="section-title">Games We <span>Cover</span></h2>
+      </div>
+      <div class="games-grid stagger-children">
+        <div class="game-item fade-up">
+          <div class="game-icon">🎯</div>
+          <div class="game-name">Valorant</div>
+        </div>
+        <div class="game-item fade-up">
+          <div class="game-icon">🔫</div>
+          <div class="game-name">CS:GO 2</div>
+        </div>
+        <div class="game-item fade-up">
+          <div class="game-icon">⚔️</div>
+          <div class="game-name">League of Legends</div>
+        </div>
+        <div class="game-item fade-up">
+          <div class="game-icon">🚀</div>
+          <div class="game-name">Apex Legends</div>
+        </div>
+        <div class="game-item fade-up">
+          <div class="game-icon">🏗️</div>
+          <div class="game-name">Fortnite</div>
+        </div>
+        <div class="game-item fade-up">
+          <div class="game-icon">⚡</div>
+          <div class="game-name">Overwatch 2</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7: NEWS -->
+  <section class="news-section" id="news">
+    <div class="container">
+      <div class="news-header fade-up">
+        <div>
+          <div class="section-subtitle">Updates</div>
+          <h2 class="section-title">Latest <span>Intel</span></h2>
+        </div>
+        <a href="blog.html" class="btn-secondary"><i class="bi bi-arrow-right"></i> View All News</a>
+      </div>
+      <div class="news-grid stagger-children">
+        <div class="glass-card news-card fade-up">
+          <div class="news-card-img"><img src="assets/images/tournament.webp" alt="News"></div>
+          <div class="news-card-content">
+            <span class="news-date"><i class="bi bi-calendar3"></i> JUN 20, 2026</span>
+            <h3 class="news-title"><a href="error.html">Stackly Secures Victory at Global Finals</a></h3>
+            <p class="news-excerpt">An unbelievable comeback in the grand finals secured the championship trophy for our main roster.</p>
+          </div>
+        </div>
+        <div class="glass-card news-card fade-up">
+          <div class="news-card-img"><img src="assets/images/gaming-setup.webp" alt="News"></div>
+          <div class="news-card-content">
+            <span class="news-date"><i class="bi bi-calendar3"></i> JUN 15, 2026</span>
+            <h3 class="news-title"><a href="error.html">New Training Facility Unveiled in LA</a></h3>
+            <p class="news-excerpt">Take a tour inside our brand new, state-of-the-art gaming house designed for peak performance.</p>
+          </div>
+        </div>
+        <div class="glass-card news-card fade-up">
+          <div class="news-card-img"><img src="assets/images/coaching.webp" alt="News"></div>
+          <div class="news-card-content">
+            <span class="news-date"><i class="bi bi-calendar3"></i> JUN 10, 2026</span>
+            <h3 class="news-title"><a href="error.html">Patch 8.12 Meta Analysis by Coach "Zen"</a></h3>
+            <p class="news-excerpt">A deep dive into the recent balance changes and how they will affect the upcoming tournament circuit.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8: CTA -->
+  <section class="cta-section" id="cta">
+    <div class="particles">
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div><div class="particle"></div>
+      <div class="particle"></div><div class="particle"></div>
+    </div>
+    <div class="container fade-up">
+      <div class="section-subtitle">Join The Resistance</div>
+      <h2>Ready to Elevate Your <span>Game</span>?</h2>
+      <p>Subscribe to our newsletter for exclusive tips, tournament announcements, and merchandise drops.</p>
+      <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <a href="login.html" class="btn-primary"><i class="bi bi-rocket-takeoff"></i> Get Started Free</a>
+        <a href="error.html" class="btn-secondary"><i class="bi bi-discord"></i> Join Discord</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <a href="index.html" class="navbar-brand" style="margin-bottom: 1.5rem; display: flex;">
+            <img src="assets/images/logo.webp" alt="Stackly Logo" style="height:30px; margin-right: 10px;">
+            <span class="brand-text" style="font-size: 1.2rem;">Stackly</span>
+          </a>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.8;">
+            The premier destination for elite esports intelligence, tournament hosting, and professional gaming development.
+          </p>
+          <div class="social-icons">
+            <a href="error.html" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="error.html" title="Discord"><i class="bi bi-discord"></i></a>
+            <a href="error.html" title="Twitch"><i class="bi bi-twitch"></i></a>
+            <a href="error.html" title="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <ul class="footer-links">
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="error.html">Tournaments</a></li>
+            <li><a href="error.html">Leaderboards</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Resources</h4>
+          <ul class="footer-links">
+            <li><a href="blog.html">Blog & News</a></li>
+            <li><a href="error.html">Guides & Tutorials</a></li>
+            <li><a href="contact.html">Support Center</a></li>
+            <li><a href="error.html">FAQ</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Legal</h4>
+          <ul class="footer-links">
+            <li><a href="error.html">Terms of Service</a></li>
+            <li><a href="error.html">Privacy Policy</a></li>
+            <li><a href="error.html">Cookie Policy</a></li>
+            <li><a href="error.html">Compliance</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 Stackly ESports. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <button class="back-to-top" aria-label="Back to top"><i class="bi bi-chevron-up"></i></button>
+
+  <script src="script.js"></script>
+</body>
+</html>
