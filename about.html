@@ -62,10 +62,17 @@
     .team-socials a:hover { color: var(--primary-color); transform: translateY(-3px); display: inline-block; }
 
     @media (max-width: 768px) {
+      .page-title { font-size: 1.8rem; word-wrap: break-word; overflow-wrap: break-word; }
+      .page-header { padding: 10rem 0 4rem; }
+      .page-desc { font-size: 1rem; }
       .mission-grid { grid-template-columns: 1fr; }
       .timeline::before { left: 20px; }
       .timeline-item { width: 100%; left: 0 !important; padding-left: 50px; text-align: left !important; }
       .timeline-dot { left: 11px !important; }
+    }
+    @media (max-width: 480px) {
+      .page-title { font-size: 1.4rem; }
+      .page-header { padding: 8rem 0 3rem; }
     }
   </style>
 </head>
@@ -201,10 +208,11 @@
           </a>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">The premier destination for elite esports intelligence.</p>
           <div class="social-icons">
-            <a href="error.html"><i class="bi bi-twitter-x"></i></a>
-            <a href="error.html"><i class="bi bi-discord"></i></a>
-            <a href="error.html"><i class="bi bi-twitch"></i></a>
-            <a href="error.html"><i class="bi bi-youtube"></i></a>
+            <a href="error.html" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="error.html" title="Discord"><i class="bi bi-discord"></i></a>
+            <a href="error.html" title="Twitch"><i class="bi bi-twitch"></i></a>
+            <a href="https://lingalamanasa.github.io/ESPORTS/" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="bi bi-github"></i></a>
+            <a href="error.html" title="YouTube"><i class="bi bi-youtube"></i></a>
           </div>
         </div>
         <div class="footer-col"><h4>Platform</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="error.html">Tournaments</a></li><li><a href="error.html">Leaderboards</a></li></ul></div>

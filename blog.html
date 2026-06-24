@@ -50,10 +50,19 @@
     .newsletter-input:focus { border-color: var(--secondary-color); box-shadow: 0 0 15px rgba(0, 240, 255, 0.2); }
 
     @media (max-width: 768px) {
+      .page-title { font-size: 1.8rem; word-wrap: break-word; overflow-wrap: break-word; }
+      .page-header { padding: 10rem 0 4rem; }
+      .page-desc { font-size: 1rem; }
       .featured-card { grid-template-columns: 1fr; }
       .featured-content { padding: 2rem; }
+      .featured-title { font-size: 1.4rem; }
       .newsletter-form { flex-direction: column; }
       .newsletter-input { max-width: 100%; }
+      .newsletter-container h2 { font-size: 1.6rem; }
+    }
+    @media (max-width: 480px) {
+      .page-title { font-size: 1.4rem; }
+      .page-header { padding: 8rem 0 3rem; }
     }
   </style>
 </head>
@@ -93,7 +102,15 @@
         <div class="featured-content">
           <span class="article-tag"><i class="bi bi-trophy"></i> Tournament Recap</span>
           <h2 class="featured-title">How Stackly Secured the <span>Global Finals</span></h2>
-          <p class="featured-desc">An in-depth look at the strategic plays, crucial rounds, and the mindset that led our main roster to lift the championship trophy against all odds in the most watched esports event of the year.</p>
+          <div class="featured-desc" style="text-align: left;">
+            <p>An in-depth look at the strategic plays, crucial rounds, and the mindset that led our main roster to lift the championship trophy against all odds in the most watched esports event of the year.</p>
+            <ul style="margin: 1rem 0 1rem 1.5rem; color: var(--text-muted); font-size: 1rem;">
+              <li><strong>Map 1:</strong> Flawless execution on the A-site take.</li>
+              <li><strong>Map 2:</strong> Vortex's unbelievable 1v3 clutch.</li>
+              <li><strong>Map 3:</strong> Total dominance in the grand finals.</li>
+            </ul>
+            <blockquote style="border-left: 3px solid var(--secondary-color); padding-left: 1rem; margin: 1rem 0; font-style: italic; color: #fff;">"We knew we had to play perfectly, and everyone stepped up when it mattered most." <br><span style="font-size: 0.9rem; color: var(--text-muted);">- Coach Zen</span></blockquote>
+          </div>
           <a href="error.html" class="btn-secondary" style="align-self: flex-start;"><i class="bi bi-arrow-right"></i> Read Full Article</a>
         </div>
       </div>
@@ -115,9 +132,13 @@
               <span><i class="bi bi-calendar3"></i> Jun 15, 2026</span>
               <span><i class="bi bi-person"></i> Alex "Vortex"</span>
             </div>
+            <span class="article-tag" style="margin-bottom: 0.8rem;"><i class="bi bi-building"></i> Facility</span>
             <h3 class="news-title"><a href="error.html">New Training Facility Unveiled in LA</a></h3>
-            <p class="news-excerpt">Take a tour inside our brand new, state-of-the-art gaming house designed for peak performance and tactical synergy.</p>
-            <a href="error.html" class="btn-secondary" style="align-self: flex-start;">Read More</a>
+            <p class="news-excerpt">Take a tour inside our brand new, state-of-the-art gaming house designed for peak performance and tactical synergy. Features include <strong>120Hz monitors</strong>, custom ergonomic setups, and a dedicated VOD review theater.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+              <a href="error.html" class="btn-secondary" style="align-self: flex-start; padding: 0.5rem 1.2rem; font-size: 0.75rem;">Read More</a>
+              <span style="font-size: 0.75rem; color: var(--text-muted);"><i class="bi bi-clock"></i> 5 min read</span>
+            </div>
           </div>
         </div>
         <div class="glass-card news-card fade-up">
@@ -127,9 +148,13 @@
               <span><i class="bi bi-calendar3"></i> Jun 10, 2026</span>
               <span><i class="bi bi-person"></i> Coach Zen</span>
             </div>
+            <span class="article-tag" style="margin-bottom: 0.8rem;"><i class="bi bi-joystick"></i> Meta</span>
             <h3 class="news-title"><a href="error.html">Patch 8.12 Meta Analysis</a></h3>
-            <p class="news-excerpt">A deep dive into the recent balance changes and how they affect the upcoming tournament circuit. Who are the big winners?</p>
-            <a href="error.html" class="btn-secondary" style="align-self: flex-start;">Read More</a>
+            <p class="news-excerpt">A deep dive into the recent balance changes and how they affect the upcoming tournament circuit. <strong>Duelist agents</strong> receive massive buffs while Controller mains adapt to new smoke mechanics.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+              <a href="error.html" class="btn-secondary" style="align-self: flex-start; padding: 0.5rem 1.2rem; font-size: 0.75rem;">Read More</a>
+              <span style="font-size: 0.75rem; color: var(--text-muted);"><i class="bi bi-clock"></i> 8 min read</span>
+            </div>
           </div>
         </div>
         <div class="glass-card news-card fade-up">
@@ -139,9 +164,13 @@
               <span><i class="bi bi-calendar3"></i> Jun 05, 2026</span>
               <span><i class="bi bi-person"></i> Media Team</span>
             </div>
+            <span class="article-tag" style="margin-bottom: 0.8rem;"><i class="bi bi-handshake"></i> Partnership</span>
             <h3 class="news-title"><a href="error.html">Stackly Partners with Secretlab</a></h3>
-            <p class="news-excerpt">We are thrilled to announce our new partnership to ensure our athletes game with maximum comfort and ergonomics.</p>
-            <a href="error.html" class="btn-secondary" style="align-self: flex-start;">Read More</a>
+            <p class="news-excerpt">We are thrilled to announce our new partnership to ensure our athletes game with maximum comfort and ergonomics. All pro players receive the <strong>Titan Evo 2026</strong> custom Stackly edition chair.</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+              <a href="error.html" class="btn-secondary" style="align-self: flex-start; padding: 0.5rem 1.2rem; font-size: 0.75rem;">Read More</a>
+              <span style="font-size: 0.75rem; color: var(--text-muted);"><i class="bi bi-clock"></i> 3 min read</span>
+            </div>
           </div>
         </div>
       </div>
@@ -168,7 +197,13 @@
         <div class="footer-col">
           <a href="index.html" class="navbar-brand" style="margin-bottom: 1.5rem; display: flex;"><img src="assets/images/logo.webp" alt="Stackly Logo" style="height:30px; margin-right: 10px;"><span class="brand-text" style="font-size: 1.2rem;">Stackly</span></a>
           <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.5rem;">The premier destination for elite esports intelligence.</p>
-          <div class="social-icons"><a href="error.html"><i class="bi bi-twitter-x"></i></a><a href="error.html"><i class="bi bi-discord"></i></a><a href="error.html"><i class="bi bi-twitch"></i></a><a href="error.html"><i class="bi bi-youtube"></i></a></div>
+          <div class="social-icons">
+            <a href="error.html" title="Twitter"><i class="bi bi-twitter-x"></i></a>
+            <a href="error.html" title="Discord"><i class="bi bi-discord"></i></a>
+            <a href="error.html" title="Twitch"><i class="bi bi-twitch"></i></a>
+            <a href="https://lingalamanasa.github.io/ESPORTS/" target="_blank" rel="noopener noreferrer" title="GitHub"><i class="bi bi-github"></i></a>
+            <a href="error.html" title="YouTube"><i class="bi bi-youtube"></i></a>
+          </div>
         </div>
         <div class="footer-col"><h4>Platform</h4><ul class="footer-links"><li><a href="about.html">About Us</a></li><li><a href="services.html">Services</a></li><li><a href="error.html">Tournaments</a></li><li><a href="error.html">Leaderboards</a></li></ul></div>
         <div class="footer-col"><h4>Resources</h4><ul class="footer-links"><li><a href="blog.html">Blog & News</a></li><li><a href="error.html">Guides</a></li><li><a href="contact.html">Support</a></li><li><a href="error.html">FAQ</a></li></ul></div>

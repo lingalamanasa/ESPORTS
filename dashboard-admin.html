@@ -111,11 +111,12 @@
     @media (max-width: 1200px) { .stat-row { grid-template-columns: repeat(2, 1fr); } .dash-grid-3 { grid-template-columns: 1fr; } }
     @media (max-width: 992px) { .dash-grid-2 { grid-template-columns: 1fr; } .topbar-search { width: 180px; } }
     @media (max-width: 768px) {
-      .sidebar { position: fixed; left: -270px; height: 100vh; width: 270px; }
+      .sidebar { position: fixed; left: -270px; height: 100vh; width: 270px; overflow-y: auto; }
       .sidebar.active { left: 0; }
       .mobile-toggle { display: block; }
       .topbar-search { display: none; }
       .stat-row { grid-template-columns: 1fr 1fr; }
+      .sidebar-footer { flex-shrink: 0; padding-bottom: 1.5rem; }
     }
     @media (max-width: 480px) { .stat-row { grid-template-columns: 1fr; } .dash-container { padding: 1rem; } .donut-container { flex-direction: column; } }
   </style>
@@ -151,7 +152,7 @@
     <header class="topbar">
       <div class="topbar-left">
         <button class="mobile-toggle" onclick="toggleSidebar()"><i class="bi bi-list"></i></button>
-        <a href="index.html" id="mobileLogo" style="display: none;"><img src="assets/images/logo.webp" alt="Stackly" style="height: 22px;"></a>
+        <a href="index.html" id="mobileLogo" style="display: none; align-items: center; gap: 0.5rem;"><img src="assets/images/logo.webp" alt="Stackly" style="height: 42px; filter: drop-shadow(0 0 8px rgba(138,43,226,0.5));"></a>
         <input type="text" class="topbar-search" placeholder="Search users, events, logs...">
       </div>
       <div class="topbar-right">
@@ -342,7 +343,7 @@
       const w = window.innerWidth;
       const ml = document.getElementById('mobileLogo');
       const cb = document.getElementById('closeSidebarBtn');
-      if (ml) ml.style.display = w > 768 ? 'none' : 'block';
+      if (ml) ml.style.display = w > 768 ? 'none' : 'flex';
       if (cb) cb.style.display = w > 768 ? 'none' : 'block';
       if (w > 768) {
         document.getElementById('sidebar').classList.remove('active');
